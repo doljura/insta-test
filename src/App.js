@@ -1,25 +1,62 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {DEFAULT_STATE, SMALL_WIDTH} from './constants';
+import {Header} from './components/header';
+import {AccountInfo} from './components/accountInfo';
+import {PhotoArea} from './components/photoArea';
+import {Tabs} from './components/tabs';
+import {Stories} from './components/stories';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.updateDimensions = this.updateDimensions.bind(this);
+  }
+
+  setInitialState() {
+    this.setState({...DEFAULT_STATE, dimensions: {
+        width: window.innerWidth,
+        height: window.innerHeight
+    }})
+  }
+
+    updateDimensions() {
+      this.setState((state) => ({
+          ...state,
+          dimensions: {
+              width: window.innerWidth,
+              height: window.innerHeight
+          }
+      }))
+  }
+
+  componentWillMount() {
+      this.setInitialState();
+      window.addEventListener('resize', this.updateDimensions);
+  }
+
+  componentWillUnmount() {
+      window.removeEventListener('resize', this.updateDimensions);
+  }
+
   render() {
+    const {dimensions, info, stories, photoes} = this.state;
+    const isSmallScreen = dimensions.width <= SMALL_WIDTH;
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+          <div className="main-wrapper">
+              <Header {...this.state} isSmallScreen={isSmallScreen}></Header>
+              {
+                  isSmallScreen && (
+                      <AccountInfo title={info.title} isSmallScreen={isSmallScreen}></AccountInfo>
+                  )
+              }
+              <Stories stories={stories} />
+              <Tabs></Tabs>
+              <PhotoArea data={photoes}></PhotoArea>
+          </div>
       </div>
     );
   }

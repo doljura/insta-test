@@ -1,32 +1,202 @@
 .App {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px 10px 0 10px;
+  overflow-x: hidden;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.main-wrapper {
+  max-width: 900px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
+  display: flex;
+  flex-direction: row;
+}
+
+.header__logo-container {
+  width: 100px;
+}
+
+.header__logo-container img {
+  width: 100%;
+  height: 100%;
+}
+
+.header__info-container {
+  flex: 1;
+  padding: 10px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.info-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.info-wrapper .info-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.round {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.round img {
+  border: 3px solid red;
+  border-radius: 50%;
+  width: 100%;
+}
+
+.round.round-story {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  margin: 10px;
+}
+
+.header-buttons {
+  display: flex;
+}
+
+.header-buttons button {
+  margin: 0 3px;
+  height: 28px;
+  background: white;
+  border-radius: 3px;
+}
+
+.header-buttons .message-btn {
+  flex: 1;
+}
+.header-buttons .follow-btn {
+  width: 30px;
+}
+.header-buttons .recommend-btn {
+  width: 20px;
+}
+
+.account-info {
+  margin: 25px 0 5px 0;
+}
+
+.stories {
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: auto;
+  padding: 20px 0;
+}
+
+.tabs-container {
+  margin: 0 -10px;
+}
+.tabs-container > div  {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  flex-direction: row;
+  height: 60px;
+  align-items: center;
+  border-top: 1px solid grey;
+}
+
+.bottom-tabs button {
+  width: 30px;
+  height: 30px;
+  background: white;
+  border-radius: 3px;
+}
+
+.photo-area {
+  margin: 0 -10px;
+}
+
+.photo-area .photo-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.photo-row {
+  margin-bottom: 3px;
+}
+
+.photo-row > div {
+  flex: 1;
+  margin-right: 3px;
+}
+
+.photo-row > div:last-child {
+  margin-right: 0;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+}
+
+
+@media screen and (min-width: 732px) {
+  .info-wrapper {
+    justify-content: flex-start;
   }
-  to {
-    transform: rotate(360deg);
+  .info-wrapper .info-item {
+    flex-direction: row;
+    margin-right: 30px;
+  }
+  .header-buttons {
+    max-width: 400px;
+  }
+  .info-wrapper .info-item div:first-child {
+    margin-right: 5px;
+  }
+
+  .account-info {
+    margin: 0;
+  }
+
+  .photo-row {
+    margin-bottom: 20px;
+  }
+
+  .photo-row > div {
+    margin-right: 20px;
+  }
+
+  .header__logo-container {
+    flex: 1;
+  }
+  .header__info-container {
+    flex: 2;
+  }
+  .round img {
+    width: 60%;
+  }
+
+  .round.round-story img {
+    width: 100%;
+  }
+
+  .round.round-story {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    min-height: 100px;
+    margin: 15px;
+  }
+}
+@media screen and (min-width: 900px) {
+  .App {
+    align-items: center;
   }
 }
